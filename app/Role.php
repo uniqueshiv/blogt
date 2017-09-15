@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Laratrust\LaratrustRule;
+use Laratrust\LaratrustRole;
 
 
 class Role extends LaratrustRole
