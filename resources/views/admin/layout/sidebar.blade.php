@@ -38,9 +38,9 @@
                 </a>
             </li>
             <li>
-                <a href="javascript:;">
+                <a href="{{ route('users.index')}}">
                 <i class="icon-basket"></i>
-                <span class="title">eCommerce</span>
+                <span class="title">Manage Users</span>
                 <span class="arrow "></span>
                 </a>
                 <ul class="sub-menu">
