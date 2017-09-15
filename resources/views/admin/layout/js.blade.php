@@ -59,4 +59,5 @@ jQuery(document).ready(function() {
    Tasks.initDashboardWidget();
 });
 </script>
+@stack('scripts')
 <!-- END JAVASCRIPTS -->

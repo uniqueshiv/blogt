@@ -20,27 +20,27 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                      <img alt="" class="img-circle" src="http://localhost/blogt/public/admin/layout/img/avatar3_small.jpg">  {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="extra_profile.html">
-                                        <i class="icon-user"></i> My Profile </a>
+                                        <i class="fa fa-user"></i> My Profile </a>
                                     </li>
                                     <li>
                                         <a href="page_calendar.html">
-                                        <i class="icon-calendar"></i> My Calendar </a>
+                                        <i class="fa fa-calendar"></i> My Calendar </a>
                                     </li>
                                     <li>
                                         <a href="inbox.html">
-                                        <i class="icon-envelope-open"></i> My Inbox <span class="badge badge-danger">
+                                        <i class="fa fa-envelope"></i> My Inbox <span class="badge badge-danger">
                                         3 </span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="page_todo.html">
-                                        <i class="icon-rocket"></i> My Tasks <span class="badge badge-success">
+                                        <i class="fa fa-rocket"></i> My Tasks <span class="badge badge-success">
                                         7 </span>
                                         </a>
                                     </li>
@@ -50,7 +50,8 @@
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                                      <i class="fa fa-sign-out"></i> Logout
+                                            
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

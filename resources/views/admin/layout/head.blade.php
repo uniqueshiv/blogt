@@ -29,6 +29,7 @@
 <link href="{{ asset('admin/layout/css/layout.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('admin/layout/css/themes/default.css')}}" rel="stylesheet" type="text/css" id="style_color"/>
 <link href="{{ asset('admin/layout/css/custom.css')}}" rel="stylesheet" type="text/css"/>
+@stack('css')
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
 </head>

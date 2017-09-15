@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Session;
+use Hash;
 
 class UserController extends Controller
 {
@@ -14,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users=User::all();
+        //$users=User::all();
+        $users=User::orderBy('id','desc')->paginate(10);
         return view('admin.users.users')->withUsers($users);
     }
 
@@ -25,7 +28,7 @@ class UserController extends Controller
      */
     public function create(){
     
-        //
+       return view('admin.users.create');
     }
 
     /**
@@ -36,7 +39,34 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $this->validate($request,[
+            'name'  =>'required|max:255',
+            'email' =>'required|unique:users|email'
+
+        ]);
+        if($request->has('password')&& !empty($request->password)){
+            $password=trim($request->password);
+        }else{
+            $length=10;
+            $keyspace="1123456789abcdefghijklmnopqurstuvwxyzABCDEFGHTIKLMNOPQRSTUVWXYZ";
+            $str="";
+            $max=mb_strlen($keyspace,'8bit')-1;
+            for($i=0;$i<=$length;++$i){
+                $str.="";
+                $keyspace[random_int(0, $max)];
+            }
+            $password= $str;
+        }
+        $user=new User();
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->password=Hash::make($password);
+        if($user->save()){
+            return redirect()->route('users.show',$user->id);
+        }else{
+            return redirect()->route('users.create');
+            Session::flash('danger','Sorry a problem occur while creating user!');
+        }
     }
 
     /**
@@ -47,7 +77,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user=User::findOrFail($id);
+        return view('admin.users.show')->withUser($user);
     }
 
     /**
@@ -58,7 +89,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+       $user=User::findOrFail($id);
+       return view('admin.users.edit')->withUser($user);
     }
 
     /**
@@ -70,7 +102,35 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name'  =>'required|max:255',
+            'email' =>'required|unique:users|email'
+
+        ]);
+        if(Request::has('password')&& !empty($request->password)){
+            $password=trim($request->password);
+        }else{
+            $len=10;
+            $keyspace="1123456789abcdefghijklmnopqurstuvwxyzABCDEFGHTIKLMNOPQRSTUVWXYZ";
+            $str="";
+            $max=mb_strlen($keyspace,'8bit')-1;
+            for($i=0;$i<=$length;++$i){
+                $str.="";
+                $keyspace[random_int(0, max)];
+            }
+            $password= $str;
+        }
+        $user=new User();
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->password=Hash::make($password);
+        if($user->save()){
+            return redirect()->route('users.show',$user->id);
+        }else{
+            return redirect()->route('users.create');
+            Session::flash('danger','Sorry a problem occur while creating user!');
+        }
+
     }
 
     /**

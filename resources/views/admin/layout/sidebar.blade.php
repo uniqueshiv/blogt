@@ -1,4 +1,3 @@
-<!-- BEGIN SIDEBAR -->
 <div class="page-sidebar-wrapper">
     <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
     <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
@@ -191,7 +190,7 @@
                 </ul>
             </li>
             <!-- END FRONTEND THEME LINKS -->
-            <li>
+         {{--    <li>
                 <a href="javascript:;">
                 <i class="icon-diamond"></i>
                 <span class="title">UI Features</span>
@@ -672,7 +671,7 @@
                         Vector Maps</a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
             <li class="last ">
                 <a href="charts.html">
                 <i class="icon-bar-chart"></i>
@@ -683,4 +682,4 @@
         <!-- END SIDEBAR MENU -->
     </div>
 </div>
-<!-- END SIDEBAR -->
+<!-- END SIDEBAR

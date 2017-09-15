@@ -1,12 +1,13 @@
 @extends('admin.layout.master')
 
 @section('content')
-	<div class="container">
+	<div class="container1">
 		<h2>Manage Users</h2>
-	</div>
-	<a href="{{ route('users.create')}}" class="btn btn-primary">Create User</a>
 	
-	<table class="table table-reponsive">
+	<a href="{{ route('users.create')}}" class="btn btn-primary pull-right"> <i class="fa fa-plus"></i> Create User</a>
+	<div class="clearfix"></div>
+	<br>
+	<table class="table table-striped table-bordered table-hover">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -23,9 +24,12 @@
 				<td>{{$user->name}}</td>
 				<td>{{$user->email}}</td>
 				<td>{{$user->created_at->toFormattedDateString()}}</td>
-				<td><a href="{{ route('users.edit',$user->id)}}" class="btn btn-warning">Edit</a></td>
+				<td><a href="{{ route('users.edit',$user->id)}}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a></td>
 			</tr>
 		@endforeach
 		</tbody>
 	</table>
+
+	{{$users->links()}}
+</div>
 @endsection
