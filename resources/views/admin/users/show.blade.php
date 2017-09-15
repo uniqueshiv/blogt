@@ -12,9 +12,6 @@
 	<div class="form-group">
 			<label>Name</label>
 			<div class="input-group">
-				<span class="input-group-addon">
-				<i class="fa fa-user"></i>
-				</span>
 				{{$user->name}}
 			</div>
 		</div>
@@ -22,9 +19,6 @@
           <div class="form-group">
 			<label>Email</label>
 			<div class="input-group">
-				<span class="input-group-addon">
-				<i class="fa fa-envelope"></i>
-				</span>
 				{{$user->email}}
 			</div>
 		</div>
