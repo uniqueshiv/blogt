@@ -1,13 +1,18 @@
  <div class="header">
       <div class="container">
-        <a class="site-logo" href="index.html"><img src="frontend/layout/img/logos/logo-corp-red.png" alt="Metronic FrontEnd"></a>
+        <a class="site-logo" href="{{ url('/') }}"><img src="frontend/layout/img/logos/logo-corp-red.png" alt="Metronic FrontEnd"></a>
 
         <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
 
         <!-- BEGIN NAVIGATION -->
         <div class="header-navigation pull-right font-transform-inherit">
           <ul>
-            <li class="dropdown">
+          <li><a href="page-about.html">About Us</a></li>
+                <li><a href="page-services.html">Services</a></li>
+                <li><a href="page-prices.html">Prices</a></li>
+                <li><a href="page-faq.html">FAQ</a></li>
+                <li><a href="page-gallery.html">Gallery</a></li>
+            {{-- <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
                 Home 
                 
@@ -19,9 +24,6 @@
                 <li><a href="index-without-topbar.html">Home without Top Bar</a></li>
               </ul>
             </li>
-           
-
-
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:;">
                 Pages 
@@ -174,7 +176,7 @@
                   </div>
                 </form>
               </div> 
-            </li>
+            </li> --}}
             <!-- END TOP SEARCH -->
           </ul>
         </div>

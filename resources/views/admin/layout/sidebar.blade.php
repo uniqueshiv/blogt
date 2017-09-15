@@ -31,7 +31,7 @@
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
             </li>
             <li class="start active ">
-                <a href="index.html">
+                <a href="{{ route('admin.manage.dashboard')}}">
                 <i class="icon-home"></i>
                 <span class="title">Dashboard</span>
                 <span class="selected"></span>

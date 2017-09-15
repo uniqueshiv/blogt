@@ -11,15 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('testing');
-});
+ Route::get('/', function () {
+     return view('testing');
+ });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('manage')->group(function(){
 
-	Route::get('/dashboard','ManageController@dashboard')->name('manage.dashboard');
+
+Route::prefix('manage')->middleware('role:superadministrator|administrator|editor|author|contrubutor')->group(function(){
+	Route::get('/','ManageController@index');
+
+	Route::get('/dashboard','ManageController@dashboard')->name('admin.manage.dashboard');
 });
+
+
+Route::get('/home', 'HomeController@index')->name('home');

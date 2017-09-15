@@ -4,8 +4,8 @@
     <div class="page-header-inner">
         <!-- BEGIN LOGO -->
         <div class="page-logo">
-            <a href="index.html">
-            <img src="../../assets/admin/layout/img/logo.png" alt="logo" class="logo-default"/>
+            <a href="{{ url('manage')}}">
+            <img src="{{ asset('admin/layout/img/logo.png')}}" alt="logo" class="logo-default"/>
             </a>
             <div class="menu-toggler sidebar-toggler hide">
                 <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
@@ -143,7 +143,7 @@
                                 <li>
                                     <a href="inbox.html?a=view">
                                     <span class="photo">
-                                    <img src="../../assets/admin/layout/img/avatar2.jpg" alt=""/>
+                                    <img src="{{ asset('admin/layout3/img/avatar2.jpg')}}" alt=""/>
                                     </span>
                                     <span class="subject">
                                     <span class="from">
@@ -158,7 +158,7 @@
                                 <li>
                                     <a href="inbox.html?a=view">
                                     <span class="photo">
-                                    <img src="../../assets/admin/layout/img/avatar3.jpg" alt=""/>
+                                    <img src="{{ asset('admin/layout3/img/avatar3.jpg')}}" alt=""/>
                                     </span>
                                     <span class="subject">
                                     <span class="from">
@@ -173,7 +173,7 @@
                                 <li>
                                     <a href="inbox.html?a=view">
                                     <span class="photo">
-                                    <img src="../../assets/admin/layout/img/avatar1.jpg" alt=""/>
+                                    <img src="{{ asset('admin/layout3/img/avatar1.jpg')}}" alt=""/>
                                     </span>
                                     <span class="subject">
                                     <span class="from">
@@ -188,7 +188,7 @@
                                 <li>
                                     <a href="inbox.html?a=view">
                                     <span class="photo">
-                                    <img src="../../assets/admin/layout/img/avatar2.jpg" alt=""/>
+                                    <img src="{{ asset('admin/layout3/img/avatar2.jpg')}}" alt=""/>
                                     </span>
                                     <span class="subject">
                                     <span class="from">
@@ -203,7 +203,7 @@
                                 <li>
                                     <a href="inbox.html?a=view">
                                     <span class="photo">
-                                    <img src="../../assets/admin/layout/img/avatar3.jpg" alt=""/>
+                                    <img src="{{ asset('admin/layout3/img/avatar3.jpg')}}" alt=""/>
                                     </span>
                                     <span class="subject">
                                     <span class="from">
@@ -365,9 +365,9 @@
                 <!-- BEGIN USER LOGIN DROPDOWN -->
                 <li class="dropdown dropdown-user">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                    <img alt="" class="img-circle" src="../../assets/admin/layout/img/avatar3_small.jpg"/>
-                    <span class="username">
-                    Bob </span>
+                    <img alt="" class="img-circle" src="{{ asset('admin/layout/img/avatar3_small.jpg')}}"/>
+                    <span class="username"> {{ Auth::user()->name }}
+                     </span>
                     <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu">
@@ -398,7 +398,7 @@
                             <i class="icon-lock"></i> Lock Screen </a>
                         </li>
                         <li>
-                            <a href="login.html">
+                            <a href="{{ route('logout')}}">
                             <i class="icon-key"></i> Log Out </a>
                         </li>
                     </ul>
