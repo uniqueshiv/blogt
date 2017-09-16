@@ -5,7 +5,7 @@
 <div class="col-md-8 ">
 <h2>Edit user</h2>
 
-    <form action="{{-- {{route('users.update')}} --}}" method="POST">
+    <form action=" {{route('users.update',$user->id)}}" method="POST">
     {{method_field('put')}}
       {{csrf_field()}}
     	<div class="form-group">
@@ -28,62 +28,69 @@
 			</div>
 		</div>
 
-
-         <div class="form-group">
-			<label>Password</label>
-
-			<div class="input-group">
-			  <<div class="radio">
-			  	<label>
-			  		<input type="radio" name="" id="input" value="Keep" checked="checked">
-			  		Radio Box
-			  	</label>
-			  </div>
-				<radio value='keep'>Do not change password</radio>
-				<radio value='auto'>Auto-Generate new passoword</radio>
-				<radio value='manual'>Manual set new password</radio>
-			</div>
 			
-			<input type="password" class="form-control" placeholder="Manually give password" name="password" id="password" :disabled="auto_password">
-		</div>
+		<div class="form-group">
+		
+			
+			 <div class="form-group" v-if="password_options=='manual'">
+				<label>Password</label>
+				<div class="input-group">
+					<span class="input-group-addon">
+					<i class="fa fa-lock fa-fw"></i>
+					</span>
+					<input type="password" class="form-control" placeholder="Manually give password" name="password" id="password" >
+				</div>
+			 </div>
 
-		<div class="form-group">	
-			<div class="checkbox-list">
-				<input type="checkbox" id="inlineCheckbox1" value="option1" name="autogenerate" :checked="true" v-model="auto_password">
-				<label class="checkbox-inline" for="inlineCheckbox1">Auto Generate Password </label>
+
+			 <div class="form-group">
+				<fieldset >
+				<div class="margin-bottom-10">
+
+					<input id="option1" type="radio" data-size="small"  data-on-color="success" data-off-color="danger" name="password_options" value="keep" class="make-switch switch-radio1"  v-model="password_options">
+					<label for="option1">Do not change password </label>
+				</div>
+				<div class="margin-bottom-10">
+
+					<input id="option2" type="radio" data-size="small"  data-on-color="success" data-off-color="danger" name="password_options" value="auto" class="make-switch switch-radio1"  v-model="password_options">
+					<label for="option2">Auto-Generate new passoword</label>
+				</div>
+				<div class="margin-bottom-10">
+					
+					<input id="option3" type="radio"  data-size="small" data-on-color="success" data-off-color="danger" name="password_options" value="manual" class="make-switch switch-radio1"  v-model="password_options">
+					<label for="option3">Manual set the Password </label>
+				</div>
+				</fieldset>
 			</div>
+	
+	
 		</div>
 
-        {{-- <div class="column">
-          <label for="roles" class="label">Roles:</label>
-          <input type="hidden" name="roles" :value="rolesSelected" />
 
-          <b-checkbox-group v-model="rolesSelected">
-            @foreach ($roles as $role)
-              <div class="field">
-                <b-checkbox :custom-value="{{$role->id}}">{{$role->display_name}}</b-checkbox>
-              </div>
-            @endforeach
-          </b-checkbox-group>
-        </div> --}}
+		
 
+
+        
         <div class="form-actions pull-right">
 			<button type="button" class="btn default">Cancel</button>
-			<button type="submit" class="btn green">Submit</button>
+			<button type="submit" class="btn green">Edit User</button>
 		</div>
       
     </form>
 
 </div>
 @endsection
+@push('css')
+<link href="{{ asset('global/plugins/bootstrap-switch/css/bootstrap-switch.min.css')}}" rel="stylesheet" type="text/css"/>
+@endpush
 @push('scripts')
-<script src="https://unpkg.com/vue"></script>
+<script src="{{ URL::asset('js/vue.js') }}"></script>
 <script type="text/javascript">
 		
 		var app=new Vue({
 			el:'#app',
 			data:{
-				auto_password:true
+				password_options:'keep'
 			},
 			created:function(){
 				//alert('sss')

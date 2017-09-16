@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Session;
 use Hash;
-
+use DB;
 class UserController extends Controller
 {
     /**
@@ -104,12 +104,13 @@ class UserController extends Controller
     {
         $this->validate($request,[
             'name'  =>'required|max:255',
-            'email' =>'required|unique:users|email'
+            'email' =>'required|email|unique:users,email,'.$id
 
         ]);
-        if(Request::has('password')&& !empty($request->password)){
-            $password=trim($request->password);
-        }else{
+        $user=User::findOrFail($id);
+        $user->name=$request->name;
+        $user->email=$request->email;
+        if($request->password_options=='auto'){
             $len=10;
             $keyspace="1123456789abcdefghijklmnopqurstuvwxyzABCDEFGHTIKLMNOPQRSTUVWXYZ";
             $str="";
@@ -118,17 +119,16 @@ class UserController extends Controller
                 $str.="";
                 $keyspace[random_int(0, max)];
             }
-            $password= $str;
+            $user->password=Hash::make($str);
+        }elseif($request->password_options=="manual"){
+            $password=Hash::make($request->password);
         }
-        $user=new User();
-        $user->name=$request->name;
-        $user->email=$request->email;
-        $user->password=Hash::make($password);
+
         if($user->save()){
-            return redirect()->route('users.show',$user->id);
+            return redirect()->route('users.show',$id);
         }else{
-            return redirect()->route('users.create');
-            Session::flash('danger','Sorry a problem occur while creating user!');
+            Session:flash('error','There was a problem saving the updated user info to the database. Try again!');
+            return redirect()->route('users.edit',$id);
         }
 
     }

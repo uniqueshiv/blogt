@@ -38,36 +38,32 @@
             </li>
             <li>
                 <a href="{{ route('users.index')}}">
+                <i class="icon-user"></i>
+                Manage Users</a>
+            </li>
+           {{--  <li>
+                <a href="{{ route('permissions.index')}}">
+                <i class="icon-settings"></i>
+                Roles & Permissions</a>
+            </li> --}}
+            <li>
+                <a href="{{ route('users.index')}}">
                 <i class="icon-basket"></i>
-                <span class="title">Manage Users</span>
-                <span class="arrow "></span>
+                <span class="title">Roles & Permissions</span>
+                <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="ecommerce_index.html">
+                        <a href="{{ route('roles.index')}}">
                         <i class="icon-home"></i>
-                        Dashboard</a>
+                        Roles</a>
                     </li>
                     <li>
-                        <a href="ecommerce_orders.html">
+                        <a href="{{route('permissions.index')}}">
                         <i class="icon-basket"></i>
-                        Orders</a>
+                        Permissions</a>
                     </li>
-                    <li>
-                        <a href="ecommerce_orders_view.html">
-                        <i class="icon-tag"></i>
-                        Order View</a>
-                    </li>
-                    <li>
-                        <a href="ecommerce_products.html">
-                        <i class="icon-handbag"></i>
-                        Products</a>
-                    </li>
-                    <li>
-                        <a href="ecommerce_products_edit.html">
-                        <i class="icon-pencil"></i>
-                        Product Edit</a>
-                    </li>
+                    
                 </ul>
             </li>
             <li>

@@ -4,7 +4,13 @@
 	<div class="container1">
 		<h2>Manage Users</h2>
 	
-	<a href="{{ route('users.create')}}" class="btn btn-primary pull-right"> <i class="fa fa-plus"></i> Create User</a>
+	<div class="actions">
+		
+		<a href="{{route('users.create')}}" class="btn btn-circle btn-default btn-sm">
+		<i class="fa fa-plus"></i> Add </a>
+	</div>
+
+	
 	<div class="clearfix"></div>
 	<br>
 	<table class="table table-striped table-bordered table-hover">
@@ -24,7 +30,8 @@
 				<td>{{$user->name}}</td>
 				<td>{{$user->email}}</td>
 				<td>{{$user->created_at->toFormattedDateString()}}</td>
-				<td><a href="{{ route('users.edit',$user->id)}}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a></td>
+				<td><a href="{{ route('users.edit',$user->id)}}" class="btn btn-circle btn-default btn-sm">
+		<i class="fa fa-pencil"></i> Edit </a></td>
 			</tr>
 		@endforeach
 		</tbody>
