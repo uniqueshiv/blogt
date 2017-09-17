@@ -14,11 +14,11 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles=Role::all();
+        $roles=Role::orderBy('id','desc')->paginate(10);
         return view('admin.roles.index')->withRoles($roles);
     }
 
-    /**
+    /*10
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -47,7 +47,8 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        //
+        $roles=Role::findOrFail($id);
+        return view('admin.roles.show')->withRoles($roles);
     }
 
     /**
