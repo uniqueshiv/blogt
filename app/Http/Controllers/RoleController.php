@@ -59,7 +59,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+       $permissions=Permission::all();
+       $role=Role::where('id',$id)->with('permissions')->get();
+       return view('admin.roles.edit')->withRoles($role)->withPermissions($permissions);
     }
 
     /**
