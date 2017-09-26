@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Role;
+use App\Permission;
+use Session;
 
 class RoleController extends Controller
 {
@@ -25,7 +27,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $permissions=Permission::all();
+        return view('admin.roles.create')->withPermissions($permissions);
     }
 
     /**
@@ -36,12 +39,25 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $this->validate($request,[
+            'display_name'=>'required|max:255',
+            'name'        =>'required|max:100|alpha_dash|unique:permissions,name',
+            'description'=>'required|max:255'
+            ]);
 
-    /**
-     * Display the specified resource.
-     *
+         $role=new Role();
+         $role->display_name=$request->display_name;
+         $role->name=$request->name;
+         $role->description=$request->description;
+         $role->save();
+
+         if($request->permissions){
+            $role->syncPermissions(explode(',',$request->permissions));
+          }
+          Session::flash('message','New Role Successfully has been created');
+          return redirect()->route('roles.show',$role->id);
+    }
+    /*
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -59,9 +75,11 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
+      
+       $roles=Role::where('id',$id)->with('permissions')->first();
        $permissions=Permission::all();
-       $role=Role::where('id',$id)->with('permissions')->get();
-       return view('admin.roles.edit')->withRoles($role)->withPermissions($permissions);
+       //dd([$permissions,$roles]);
+       return view('admin.roles.edit')->withRoles($roles)->withPermissions($permissions);
     }
 
     /**
@@ -73,7 +91,22 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'display_name'=>'required|max:255',
+            'description' =>'sometimes|max:255'
+        ]);
+
+        $role=Role::findOrFail($id);
+        $role->display_name=$request->display_name;
+        $role->description=$request->description;
+        $role->save();
+
+        if($request->permissions){
+            $role->syncPermissions(explode(',',$request->permissions));
+        }
+        $request->session()->flash('key', 'Successfully updated the '.$role->display_name.' role in the db');
+        return redirect()->route('roles.show',$id);
+
     }
 
     /**

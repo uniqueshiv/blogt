@@ -4,35 +4,35 @@
 
 <div class="container1" id="editpermission">
 
-		<h2>Edit {{$roles->display_name}}</h2>
+		<h2>Create New Role</h2>
 		<div class="actions pull-right">
-			<a href="{{route('roles.edit',$roles->id)}}" class="btn btn-circle  btn-default btn-sm">
-			<i class="fa fa-edit "></i> Edit </a>
+			<a href="{{route('roles.index')}}" class="btn btn-circle  btn-default btn-sm">
+			<i class="fa fa-home "></i> Go to Roles </a>
 		</div>
 		<br>
 		<hr>
 			<h3><b>Role Details</b></h3>
-			<form action="{{ route('roles.update',$roles->id)}}" method="post">
+			<form action="{{ route('roles.store')}}" method="post">
 
 				{{ csrf_field()}}
-				{{ method_field('PUT')}}
+				
 
 				<div class="form-group">
 				<label class="control-label"><b>Name (Human Readable)</b></label><br>
 					
-						<input type="text" name="display_name" class="form-control input-circle" value="{{$roles->display_name}}" id="display_name">
+						<input type="text" name="display_name" class="form-control input-circle" id="display_name">
 				
 				</div>
 
 				<div class="form-group">
-				<label class="control-label" for="name"><b>Slug (Can not be editted)</b></label><br>
-						<input type="text" class="form-control input-circle" name="name" disabled value="{{$roles->name}}" id="name">
+				<label class="control-label" for="name"><b>Slug (Can not be editted )</b></label><br>
+						<input type="text" class="form-control input-circle" name="name"   id="name">
 				</div>
 
 				<div class="form-group">
 				<label class="control-label" for="description"><b>Description </b></label>
 
-						<input type="text" class="form-control input-circle" name="description" id="description" value="{{$roles->description}}">
+						<input type="text" class="form-control input-circle" name="description" id="description">
 				</div>
 				<div class="clearfix"></div>
 				<h3>Permissions</h3>
@@ -55,7 +55,7 @@
 	var vue=new Vue({
 		el:'#editpermission',
 		data:{
-			permission_Selected:{!!$roles->permissions->pluck('id')!!},
+			permission_Selected:[],
 
 		}
 	})
